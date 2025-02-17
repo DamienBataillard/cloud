@@ -1,16 +1,18 @@
-# Utiliser l'image officielle Node.js
+# Use Node.js as base image
 FROM node:18
 
-# Définir le répertoire de travail dans le conteneur
+# Set working directory inside the container
 WORKDIR /app
 
-# Copier les fichiers du projet
+# Copy package.json and install dependencies first
 COPY package*.json ./
 RUN npm install
-COPY . .
 
-# Exposer le port 3000
+# Copy all project files into the container
+COPY . . 
+
+# Expose the port
 EXPOSE 3000
 
-# Commande pour démarrer l'application
+# Start the application
 CMD ["node", "index.js"]
