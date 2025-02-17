@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mon-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mon-service
+  template:
+    metadata:
+      labels:
+        app: mon-service
+    spec:
+      containers:
+      - name: mon-service
+        image: damienbat/mon-service:v1  # Replace "utilisateur" with your Docker Hub username
+        ports:
+        - containerPort: 3000
